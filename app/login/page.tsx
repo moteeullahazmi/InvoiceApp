@@ -2,6 +2,7 @@ import { Label } from "@/components/ui/label"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "../../components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import {signIn} from "@/app/utils/Auth"
 
 export default function Login(){
     return <>
@@ -16,10 +17,17 @@ export default function Login(){
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <form className="flex flex-col gap-y-4">
+                <form action={async (formData) => {
+        "use server"
+        await signIn("nodemailer", formData)
+      }} className="flex flex-col gap-y-4">
                     <div className="flex flex-col gap-y-2">
                         <Label>Email</Label>
-                        <Input placeholder="azmi@gmail.com"/>
+                        <Input 
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="hello@hello.com"/>
                         <Button>Submit</Button>
                     </div>
                 </form>
