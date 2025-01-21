@@ -1,10 +1,16 @@
 import { Label } from "@/components/ui/label"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "../../components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import {signIn} from "@/app/utils/Auth"
+import {auth, signIn} from "@/app/utils/Auth"
+import { SubmitFunction } from "../components/SubmitBotton"
+import { redirect } from "next/navigation"
 
-export default function Login(){
+
+export default async function Login(){
+    const session= await auth();
+    if(session?.user){
+        redirect("/dashboard")
+    }
     return <>
     <div className="h-screen w-full flex justify-center items-center ">
         <Card className="max-w-sm">
@@ -28,7 +34,7 @@ export default function Login(){
                         type="email"
                         required
                         placeholder="hello@hello.com"/>
-                        <Button>Submit</Button>
+                        <SubmitFunction/>
                     </div>
                 </form>
             </CardContent>

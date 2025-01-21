@@ -14,7 +14,7 @@ export default async function DashboardRoute() {
             await signOut();
           }}
         >
-          <button type="submit">Sign Out</button>z
+          <button type="submit">Sign Out</button>
         </form>
       </div>
     </>
