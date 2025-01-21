@@ -1,5 +1,4 @@
-import { auth, signOut } from "@/app/utils/Auth";
-import { redirect } from "next/navigation";
+import { signOut } from "@/app/utils/Auth";
 import requireUser from "@/app/utils/hooks";
 
 export default async function DashboardRoute() {
