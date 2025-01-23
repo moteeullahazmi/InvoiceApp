@@ -2,7 +2,7 @@ import { Label } from "@/components/ui/label"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "../../components/ui/card"
 import { Input } from "@/components/ui/input"
 import {auth, signIn} from "@/app/utils/Auth"
-import { SubmitFunction } from "../components/SubmitBotton"
+import { SubmitButton } from "../components/SubmitBotton"
 import { redirect } from "next/navigation"
 
 
@@ -34,7 +34,7 @@ export default async function Login(){
                         type="email"
                         required
                         placeholder="hello@hello.com"/>
-                        <SubmitFunction/>
+                        <SubmitButton text="Login"/>
                     </div>
                 </form>
             </CardContent>
