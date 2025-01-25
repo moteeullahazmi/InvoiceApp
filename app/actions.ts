@@ -27,5 +27,5 @@ export async function onboardUser(formData: FormData) {
         address: submission.value.address
        }
     })
-    return redirect("/dashboard")
+    return redirect("/dashboard");
 }
