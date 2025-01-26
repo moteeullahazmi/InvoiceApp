@@ -1,5 +1,5 @@
 import { signOut } from "@/app/utils/Auth";
-import requireUser from "@/app/utils/hooks";
+import {requireUser} from "@/app/utils/hooks";
 
 
 

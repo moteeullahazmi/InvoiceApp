@@ -15,8 +15,32 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { signOut } from "../utils/Auth";
 import { ReactNode } from "react";
+import { prisma } from "../utils/db";
+import { redirect } from "next/navigation";
+import { requireUser } from "../utils/hooks";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+async function getUser(userId: string) {
+  const data = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      firstName: true,
+      lastName: true,
+      address: true,
+    },
+  });
+
+  if (!data?.firstName || !data?.lastName || !data?.address) {
+    redirect("/onboarding");
+  }
+}
+
+export default async function DashboardLayout({ children }: { children: ReactNode }) {
+ 
+  const session = await requireUser();
+  const data = await getUser(session.user?.id as string)
+
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       {/* Sidebar (hidden on mobile) */}
@@ -24,7 +48,13 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         <div className="flex flex-col max-h-screen h-full gap-2">
           <div className="h-14 flex items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2">
-              <Image src={Logo} alt="Logo" width={28} height={28} className="size-7" />
+              <Image
+                src={Logo}
+                alt="Logo"
+                width={28}
+                height={28}
+                className="size-7"
+              />
               <p className="text-2xl font-bold">
                 Invoice<span className="text-blue-600">App</span>
               </p>
@@ -45,7 +75,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           {/* Mobile Menu Trigger */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden" aria-label="Open menu">
+              <Button
+                variant="outline"
+                size="icon"
+                className="md:hidden"
+                aria-label="Open menu"
+              >
                 <Menu className="size-4" />
               </Button>
             </SheetTrigger>
@@ -60,7 +95,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           <div className="flex items-center ml-auto">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="rounded-full" variant="outline" size="icon" aria-label="User menu">
+                <Button
+                  className="rounded-full"
+                  variant="outline"
+                  size="icon"
+                  aria-label="User menu"
+                >
                   <Users2 className="size-4" />
                 </Button>
               </DropdownMenuTrigger>
