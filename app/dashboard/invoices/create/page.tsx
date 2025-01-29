@@ -1,10 +1,9 @@
+import { CreateInvoice } from "@/app/components/CreateInvoice";
 
-const page = () => {
+export default function InvoiceCreationRoute() {
   return (
     <div>
-      create
+      <CreateInvoice />
     </div>
   )
 }
-
-export default page
