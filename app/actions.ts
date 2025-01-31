@@ -31,5 +31,4 @@ export async function onboardUser(prevState: any, formData: FormData) {
 }
 
 export async function createInvoice(){
-    const user = "some initial value"
 }
