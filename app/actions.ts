@@ -35,11 +35,9 @@ export async function createInvoice(formData: FormData){
 
     const sumbission = parseWithZod(formData, {
         schema: invoiceSchema,
+    });
 
-
-    })
-}
-
-export async function MainData(){
-    return null;
+    if(sumbission.sta4 !== "success") {
+        return submission.reply()
+    }
 }
