@@ -37,7 +37,5 @@ export async function createInvoice(formData: FormData){
         schema: invoiceSchema,
     });
 
-    if(sumbission.sta4 !== "success") {
-        return submission.reply()
-    }
+    
 }
