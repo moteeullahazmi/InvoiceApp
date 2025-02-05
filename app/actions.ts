@@ -33,9 +33,9 @@ export async function onboardUser(prevState: any, formData: FormData) {
 export async function createInvoice(formData: FormData){
     const session = await requireUser();
 
-    const sumbission = parseWithZod(formData, {
-        schema: invoiceSchema,
-    });
+    // const sumbission = parseWithZod(formData, {
+    //     schema: invoiceSchema,
+    // });
 
     
 }
