@@ -16,26 +16,24 @@ export async function onboardUser(prevState: any, formData: FormData) {
     if (submission.status !== "success") {
         return submission.reply()
     }
-    
+
     const data = await prisma.user.update({
-       where: {
-        id: session.user?.id,
-       },
-       data: {
-        firstName: submission.value.firstName,
-        lastName: submission.value.lastName,
-        address: submission.value.address
-       }
+        where: {
+            id: session.user?.id,
+        },
+        data: {
+            firstName: submission.value.firstName,
+            lastName: submission.value.lastName,
+            address: submission.value.address
+        }
     })
     return redirect("/dashboard");
 }
 
-export async function createInvoice(formData: FormData){
-    const session = await requireUser();
+// export async function createInvoice(formData: FormData) {
+//     const session = await requireUser();
 
-    const sumbission = parseWithZod(formData, {
-        schema: invoiceSchema,
-    });
-
-    
-}
+//     const sumbission = parseWithZod(formData, {
+//         schema: invoiceSchema,
+//     });
+// }
