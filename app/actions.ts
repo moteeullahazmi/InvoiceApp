@@ -6,12 +6,12 @@ import { invoiceSchema, onboardingSchema } from "./utils/zodSchemas";
 import { prisma } from "./utils/db";
 import { redirect } from "next/navigation";
 
-export async function onboardUser(prevState: any, formData: FormData) {
-    const session = await requireUser();
+// export async function onboardUser(prevState: any, formData: FormData) {
+//     const session = await requireUser();
 
-    const submission = parseWithZod(formData, {
-        schema: onboardingSchema,
-    });
+//     const submission = parseWithZod(formData, {
+//         schema: onboardingSchema,
+//     });
 
     if (submission.status !== "success") {
         return submission.reply()
